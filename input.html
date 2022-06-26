@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="qlbh">桥梁编号：</label>
+    <input type="text" id="qlbh"><br>
+
+    <label for="jg_qllx">决定桥梁结构的桥梁类型：</label>
+    <select name="" id="jg_qllx" onchange="out()">
+        <option value="0">梁式桥</option>
+        <option value="1">桁架桥</option>
+        <option value="2">刚构桥</option>
+        <option value="3">悬臂+挂梁</option>
+        <option value="4">拱桥</option>
+        <option value="5">人行天桥</option>
+    </select><br>
+
+    <label for="qljglx">桥梁结构类型：</label>
+    <select id="qljglx" onchange="change()">
+        <option value="0">桥面系</option>
+        <option value="1">上部结构</option>
+        <option value="2">下部结构</option>
+    </select><br>
+
+    <label for="gj_qllx">决定桥梁构件的桥梁类型</label>
+    <select id="gj_qllx" onchange="change2()">
+    </select><br>
+
+    <label for="bw">部位</label>
+    <select name="" id="bw" onchange="change1()">
+        <option value="0">无</option>
+        <option value="1">桥墩</option>
+        <option value="2">桥台</option>
+    </select><br>
+
+    <label for="pgys">评估要素</label>
+    <select name="" id="pgys">
+    </select><br>
+
+    <label for="gj">构件</label>
+    <select id="gj">
+    </select>
+
+
+
+
+
+
+
+    <script>
+
+        function out() {
+            var x = document.getElementById("jg_qllx");
+            if (x.selectedIndex == 0 || x.selectedIndex == 1 || x.selectedIndex == 2 || x.selectedIndex == 3) {
+                alert("0.15/0.40/0.45");
+            }
+            if (x.selectedIndex == 4) {
+                alert("0.10/0.45/0.45");
+            }
+            if (x.selectedIndex == 5) {
+                alert("0.15/0.45/0.40");
+            }
+        }
+        function change() {
+            var x = document.getElementById("qljglx");
+            var y = document.getElementById("gj_qllx");
+            var z = document.getElementById("gj");
+            var k = document.getElementById("bw");
+
+            if (x.selectedIndex == 0) {
+                y.options.length = 0;
+                y.options.add(new Option("梁式桥", "0"));
+                y.options.add(new Option("桁架桥", "1"));
+                y.options.add(new Option("拱桥", "2"));
+                y.options.add(new Option("刚构桥", "3"));
+                y.options.add(new Option("悬臂+挂梁", "4"));
+                y.options.add(new Option("人行天桥", "5"));
+                z.options[0].selected = true;
+                k.options[0].selected = true;
+
+            }
+            if (x.selectedIndex == 1) {
+                y.options.length = 0;
+                y.options.add(new Option("梁桥", "0"));
+                y.options.add(new Option("悬臂+挂梁", "1"));
+                y.options.add(new Option("刚构桥", "2"));
+                y.options.add(new Option("桁架桥", "3"));
+                y.options.add(new Option("钢结构拱桥圬工拱桥（无拱土构造）", "4"));
+                y.options.add(new Option("钢筋混凝土拱桥圬工拱桥（无拱土构造）", "5"));
+                y.options.add(new Option("人行天桥（梁桥）", "6"));
+                y.options.add(new Option("人行天桥（钢桁架桥）", "7"));
+                z.options[1].selected = true;
+            }
+            if (x.selectedIndex == 2) {
+                y.options.length = 0;
+                y.options.add(new Option("梁式桥", "0"));
+                y.options.add(new Option("桁架桥", "1"));
+                y.options.add(new Option("刚构桥", "2"));
+                y.options.add(new Option("悬臂+挂梁", "3"));
+                y.options.add(new Option("拱桥", "4"));
+                y.options.add(new Option("人行天桥", "5"));
+                z.options[1].selected = true;
+            }
+        }
+
+
+        function change1() {
+            var x = document.getElementById("bw");
+            var y = document.getElementById("gj");
+            
+            if (x.selectedIndex == 0) {
+                y.options.length = 0;
+            }
+            if (x.selectedIndex == 1) {
+                y.options.length = 0;
+                y.options.add(new Option("盖梁", "0"));
+                y.options.add(new Option("墩身", "1"));
+                y.options.add(new Option("基础", "2"));
+                y.options.add(new Option("支架", "3"));
+            }
+            if (x.selectedIndex == 2) {
+                y.options.length = 0;
+                y.options.add(new Option("台帽", "0"));
+                y.options.add(new Option("台身", "1"));
+                y.options.add(new Option("耳墙（翼墙）", "2"));
+                y.options.add(new Option("支座", "3"));
+            }
+        }
+
+        function change2() {
+            var x = document.getElementById("qljglx");
+            var y = document.getElementById("gj_qllx");
+            var w = document.getElementById("pgys");
+            var k = document.getElementById("gj")
+            
+            if (x.selectedIndex == 0 && (y.selectedIndex == 0 || y.selectedIndex == 1 || y.selectedIndex == 2 || y.selectedIndex == 3 || y.selectedIndex == 4)) {
+                w.options.length = 0;
+                w.options.add(new Option("桥面铺装", "0"));
+                w.options.add(new Option("排水系统", "1"));
+                w.options.add(new Option("桥头平顺", "2"));
+                w.options.add(new Option("人行道", "3"));
+                w.options.add(new Option("伸缩装置", "4"));
+                w.options.add(new Option("栏杆或护栏", "5"));
+            }
+
+            if (x.selectedIndex == 0 && y.selectedIndex == 5) {
+                w.options.length = 0;
+                w.options.add(new Option("桥面铺装", "0"));
+                w.options.add(new Option("排水系统", "1"));
+                w.options.add(new Option("伸缩装置", "2"));
+                w.options.add(new Option("栏杆或护栏", "3"));
+            }
+
+            if (x.selectedIndex == 1) {
+                if (y.selectedIndex == 0) {
+                    k.options.length = 0;
+                    k.options.add(new Option("主梁", "0"));
+                    k.options.add(new Option("横向联系", "1"));
+                }
+                if (y.selectedIndex == 1) {
+                    k.options.length = 0;
+                    k.options.add(new Option("悬臂梁", "0"));
+                    k.options.add(new Option("挂梁", "1"));
+                    k.options.add(new Option("挂梁支座", "2"));
+                    k.options.add(new Option("防落梁装置", "3"));
+                }
+                if (y.selectedIndex == 2) {
+                    k.options.length = 0;
+                    k.options.add(new Option("主梁", "0"));
+                    k.options.add(new Option("横向连接", "1"));
+                }
+                if (y.selectedIndex == 3) {
+                    k.options.length = 0;
+                    k.options.add(new Option("桁片", "0"));
+                    k.options.add(new Option("主节点", "1"));
+                    k.options.add(new Option("纵梁", "2"));
+                    k.options.add(new Option("横梁", "3"));
+                    k.options.add(new Option("连接件", "4"));
+                }
+                if (y.selectedIndex == 4) {
+                    k.options.length = 0;
+                    k.options.add(new Option("主拱圈（桁）", "0"));
+                    k.options.add(new Option("横向联系", "1"));
+                }
+                if (y.selectedIndex == 5) {
+                    k.options.length = 0;
+                    k.options.add(new Option("主拱圈", "0"));
+                    k.options.add(new Option("拱土构造", "1"));
+                    k.options.add(new Option("横向联系", "2"));
+                }
+                if (y.selectedIndex == 6) {
+                    k.options.length = 0;
+                    k.options.add(new Option("主梁", "0"));
+                    k.options.add(new Option("横向联系", "1"));
+                    k.options.add(new Option("外部装饰板", "2"));
+                }
+                if (y.selectedIndex == 7) {
+                    k.options.length = 0;
+                    k.options.add(new Option("桁片", "0"));
+                    k.options.add(new Option("主节点", "1"));
+                    k.options.add(new Option("纵梁", "2"));
+                    k.options.add(new Option("横梁", "3"));
+                    k.options.add(new Option("连接件", "4"));
+                    k.options.add(new Option("外部装饰板", "5"));
+                }
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
